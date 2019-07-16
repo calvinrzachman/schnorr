@@ -7,23 +7,13 @@ a digital signature scheme.
 Consider the following: We would like to send Bitcoin from Party A to Party B in such a way that only Party B is able to authorize the next moving of funds. Ideally, Party A would authorize this transfer and, by doing so, relinquish all control/claim giving full discretion on how the coins will be spent next to Party B. In practice, this is achieved using a public/private key pair and digital signatures
 
 
-## DIGITAL SIGNATURE
+## DIGITAL SIGNATURES
 
-(Need a starting sentence)
-A digital signature scheme is one which allows for a party to "sign" a message...
-The signature is a piece of data that... 
-In a digital signature scheme a ...
+A digital signature is a mathematical structure which verifies the authenticity of a digital document or message. Just like a regular signature, a digital signature provides *authentication* . Digital signatures have several additional properties including that, after producing a signature, the signer cannot deny having produced that signature *(Non-repudiation)* and they provide that the contents of a message have not been altered in any way *(Data Integrity)*.
 
-In Bitcoin, coins (UTXO) are locked to addresses. Addresses can encode different things, but most commonly they encode public keys and scripts. If coins are locked to an address representing a public key, the act of spending coins becomes a problem of proving knowledge of the associated private key. The most simple way to do this would be to simply announce the private key to the network. However, this is undesirable and prompts search for a better method. Digital signatures are this alternative.
+In Bitcoin, coins (UTXO) are locked to addresses. Addresses can encode different things, but most commonly they encode public keys or scripts. If coins are locked to an address representing a public key, the act of spending coins becomes a problem of proving knowledge of the associated private key (every transfer eventually comes down to proving this). The most simple way to do this would be to simply announce the private key to the network. However, this is undesirable and prompts search for a better method. Digital signatures are this alternative.
 
-A digital signaure allows for a party to prove knowledge of a secret without divulging that secret. In the context of Bitcoin,
-that secret is the private portion of a public/private key pair. This rather interesting property enables data to be encumbered or associated with a public key or address in such a way that only the party with knowledge of the associated private key can authorize the transfer of funds. The mechanism used to enforce the association of Bitcoin to an address is a simple scripting language that is understood by and executed on every Bitcoin network node (Consider removing as it is not in the scope of this post).
-
-Just like a regular signature, a digital signature provides authorization
-
-   * Authentication
-   * Non-repudiation
-   * Data Integrity 
+A digital signaure allows for a party to prove knowledge of a secret without divulging that secret. In the context of Bitcoin, this rather interesting property enables data to be encumbered or associated with a public key in such a way that only the party with knowledge of the associated private key can authorize the transfer of funds.
     
 
 The following description assumes some basic familiarity with how mathematical operation of addition/multiplication

@@ -47,7 +47,7 @@ Like ECDSA, a Schnorr Signature is characterized by the tuple:
     
 where s is given by:
 
-    s = k + e*x
+    s = k + e*x   (1)
 
 with
 
@@ -88,7 +88,6 @@ Mathematically the contructs are the same. They differ in both semantics and how
 
 NOTE: A single linear equation with one unknown variable is solvable for that variable.
 
-
     s = k + e*x  --> x = (s - k)/e
 
 I like to think of *k* as a blinding factor which allows us to make the value s public. As result, just like the private key, *k* must be kept secret.
@@ -99,22 +98,19 @@ Unlike handwritten signatures (if you have terrible penmanship like I do), a dig
 
     s = k + x
 
-is enough to ensure uniqueness and protection of the private key, however this signature does not commit to any particular message. A signature *(R, s)* on a message *m1* should not be valid for a message *m2*. This is important as we need to show that not only did the owner of a private key produce the signature, but also that the signature was produced unforgeably for the document being signed. 
- 
-To do this our signature needs to be associated we need to associate the data being signed to the key pair
+is enough to ensure uniqueness and protection of the private key, however this signature does not commit to any particular message. 
 
-This can be achieved by choosing the scaling factor e, such that it incorporates the data we would like to commit to. In this case the message and public key. In practice, this is done by taking the 32 byte hash of the data
-Adding a scaling factor in this way incorprates  
-associate 
+A signature *(R, s)* on a message *m1* should not be valid for a message *m2*. This is important as we need to show that not only did the owner of a private key produce the signature, but also that the signature was produced unforgeably for the document being signed. To do this our signature needs to be associated to the data it purports to sign.
+
+This can be achieved by choosing a scaling factor e, such that it incorporates the data we would like to commit to. In this case the message and public key. In practice, this is done by taking the 32 byte hash of the data: 
 
     Hash(P, R, m)
 
-This incoporates the message to be signed into the signature equation. If the message changes, the signature changes.
-The inclusion of P seems fine as we (Explore this further)
+This incoporates the message to be signed into the signature equation and earns us the desired property that if the message changes, the signature changes.
 
 ### SIGNING AND VERIFICATION
 
-Given a signature (s, R), validation can be performed by computing the following:
+Given a signature *(R, s)*, validation can be performed by computing the following:
 
     s*G = R + e*P
 
@@ -129,13 +125,15 @@ but from (1) and (2) we can rewrite this as:
 Note that the equation above contains only information which is safe to be made public. Thus, it can act as method
 of signature validation.
 
- - The signature (s,R) is by necessity public
+ - The signature (R, s) is by necessity public
  - The public key P is public. lol
  - The public nonce R is associated with the nonce k, but k is protected by the assumed hardness of the Discrete Logarithm problem (the same security as the private key).
 
-The validator cannot construct R directly, as they do not know "k". They must solve
+The validator cannot construct R directly, as they do not know *k*. They must solve
 
     R = s*G + e*P
+    
+They can then verify that the x-coordinate of *R* matches the 
     
     
 <----------- Future Work ------------>

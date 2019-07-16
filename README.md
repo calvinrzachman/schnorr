@@ -21,9 +21,9 @@ that secret is the private portion of a public/private key pair. This rather int
 
 Just like a regular signature, a digital signature provides authorization
 
-    - Authentication
-    - Non-repudiation
-    - Data Integrity 
+   * Authentication
+   * Non-repudiation
+   * Data Integrity 
     
 
 The following description assumes some basic familiarity with how mathematical operation of addition/multiplication
@@ -33,7 +33,12 @@ is defined on an elliptic curve over a finite field.
 ## SCHNORR SIGNATURE
 
 Schnorr Signatures is a particular type of digital signature scheme with notable improvements over the more traditionally
-used and current signature scheme in Bitcoin - Elliptic Curve Digital Signatures. Like ECDSA, a Schnorr Signature is characterized by the tuple:
+used and current signature scheme in Bitcoin - Elliptic Curve Digital Signatures. These improvements include, most notably,
+
+* Batch Verification
+* Signature Aggregation 
+
+Like ECDSA, a Schnorr Signature is characterized by the tuple:
 
     (R, s)
 
@@ -60,42 +65,42 @@ with
 
 
 ### KEY PAIR
-let (x, P) be a public/private key pair with the public key P given by:
+let (x, P) be a public/private key pair with the public key *P* given by:
 
     P = x*G
 
-for private key x and elliptic curve generator G
+for private key *x* and elliptic curve generator *G*
 
 ### NONCE
 let (k, R) represent a public nonce and its associated private nonce according to:
 
     R = k*G
 
-for nonce k, and elliptic curve generator G
+for nonce *k*, and elliptic curve generator *G*
 
-The private key x is analogous to nonce k and public key P is analogous to the public nonce R.
+The private key *x* is analogous to nonce *k* and public key *P* is analogous to the public nonce *R*.
 
     x --> k
     P --> R
 
 Mathematically the contructs are the same. They differ in both semantics and how they are used in signature construction.
-(k, R) is essentially an ephemeral public/private key pair used only for the purposes of creating a digital signature.
+*(k, R)* is essentially an ephemeral public/private key pair used only for the purposes of creating a digital signature.
 
 NOTE: A single linear equation with one unknown variable is solvable for that variable.
 
 
     s = k + e*x  --> x = (s - k)/e
 
-I like to think of k as a blinding factor which allows us to make the value s public. As result, just like the private key,
-the nonce k must be kept secret.
+I like to think of *k* as a blinding factor which allows us to make the value s public. As result, just like the private key, *k* must be kept secret.
 
 ### COMMITMENT
 
-Unlike handwritten signatures (if you have terrible penmanship like I do), a digital signature should be specific to a particular message. A signature (R, s) on a message m1 should not be valid for a message m2. This is important as we need to show that not only did the owner of a private key produce the signature, but also that the signature was produced unforgeably for the document being signed. 
- s = k + x
+Unlike handwritten signatures (if you have terrible penmanship like I do), a digital signature should be specific to a particular message. A signature construction 
 
+    s = k + x
 
-
+is enough to ensure uniqueness and protection of the private key, however this signature does not commit to any particular message. A signature *(R, s)* on a message *m1* should not be valid for a message *m2*. This is important as we need to show that not only did the owner of a private key produce the signature, but also that the signature was produced unforgeably for the document being signed. 
+ 
 To do this our signature needs to be associated we need to associate the data being signed to the key pair
 
 This can be achieved by choosing the scaling factor e, such that it incorporates the data we would like to commit to. In this case the message and public key. In practice, this is done by taking the 32 byte hash of the data

@@ -4,9 +4,8 @@ Go implementation of Schnorr Signatures
 The following describes how the mathematical concepts of elliptic curves and finite fields can be used to construct
 a digital signature scheme.
 
-We would like to send Bitcoin from Party A to Party B in such a way that only Party B is able to authorize the next moving of funds. Ideally, Party A would authorize this transfer and, by doing so, relinquish all control/claim giving full discretion on how the coins will be spent next to Party B. In practice this is achieved using a public/private key pair and digital signatures
+Consider the following: We would like to send Bitcoin from Party A to Party B in such a way that only Party B is able to authorize the next moving of funds. Ideally, Party A would authorize this transfer and, by doing so, relinquish all control/claim giving full discretion on how the coins will be spent next to Party B. In practice, this is achieved using a public/private key pair and digital signatures
 
-In Bitcoin, coins (UTXO) are locked to addresses. Addresses can encode different things, but the most commonly they encode public keys and scripts. If coins are locked to an address representing a public key, the act of spending coins becomes a problem of proving knowledge of the associated private key. The most simple way to do this would be to simply announce the private key to the network. However, this is undesirable and prompts search for a better method. Digital signatures are this alternative.
 
 ## DIGITAL SIGNATURE
 
@@ -14,6 +13,8 @@ In Bitcoin, coins (UTXO) are locked to addresses. Addresses can encode different
 A digital signature scheme is one which allows for a party to "sign" a message...
 The signature is a piece of data that... 
 In a digital signature scheme a ...
+
+In Bitcoin, coins (UTXO) are locked to addresses. Addresses can encode different things, but the most commonly they encode public keys and scripts. If coins are locked to an address representing a public key, the act of spending coins becomes a problem of proving knowledge of the associated private key. The most simple way to do this would be to simply announce the private key to the network. However, this is undesirable and prompts search for a better method. Digital signatures are this alternative.
 
 A digital signaure allows for a party to prove knowledge of a secret without divulging that secret. In the context of Bitcoin,
 that secret is the private portion of a public/private key pair. This rather interesting property enables data to be encumbered or associated with a public key or address in such a way that only the party with knowledge of the associated private key can authorize the transfer of funds. The mechanism used to enforce the association of Bitcoin to an address is a simple scripting language that is understood by and executed on every Bitcoin network node (Consider removing as it is not in the scope of this post).

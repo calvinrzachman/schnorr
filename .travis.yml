@@ -1,0 +1,12 @@
+# Travis CI Configuration
+sudo: required
+
+language: go
+go: 1.12.1
+dist: trusty
+
+before_install:
+
+# Test Running Section - any exit codes other than 0 --> test failed
+script:
+  - go test -v ./...

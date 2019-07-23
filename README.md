@@ -127,5 +127,6 @@ They can then verify that the x-coordinate of *R* matches the
     
     
 <----------- Future Work ------------>
+
 BATCH VERIFICATION
 CROSS INPUT AGGREGATION

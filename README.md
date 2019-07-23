@@ -23,7 +23,7 @@ is defined on an elliptic curve over a finite field.
 ## SCHNORR SIGNATURE
 
 Schnorr Signatures is a particular type of digital signature scheme with notable improvements over the more traditionally
-used and current signature scheme in Bitcoin - Elliptic Curve Digital Signatures. These improvements include, most notably,
+used and current signature scheme in Bitcoin - Elliptic Curve Digital Signatures. These improvements include, most notably:
 
 * Batch Verification
 * Signature Aggregation 
@@ -32,7 +32,7 @@ Like ECDSA, a Schnorr Signature is characterized by the tuple:
 
     (R, s)
 
-    R - x-coordinate an elliptic curve point (x,y) known as the public nonce. This appears to be used to help blind the secret
+    R - x-coordinate of an elliptic curve point (x,y) known as the public nonce. This appears to be used to help blind the secret
     s - Blinded secret key. The value that lets you demonstrate knowledge of a secret without revealing the secret
     
 where s is given by:
@@ -41,7 +41,7 @@ where s is given by:
 
 with
 
-    k - a uniformally random 256 bit integer known as a nonce,
+    k - a uniformally random 256 bit integer known as a nonce
     e - a commitment to the associated public key P, the x-cordinate of the public nonce R, and the message m
     x - a a uniformally random 256 bit integer known in this context as the private key
 
@@ -62,6 +62,7 @@ let (x, P) be a public/private key pair with the public key *P* given by:
 for private key *x* and elliptic curve generator *G*
 
 ### NONCE
+Often times in cryptography there is the need for additional one time use data. This data is known as a nonce (number used only once)
 let (k, R) represent a public nonce and its associated private nonce according to:
 
     R = k*G

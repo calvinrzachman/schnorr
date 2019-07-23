@@ -1,4 +1,4 @@
-# schnorr-signatures
+# Schnorr Signatures
 Go implementation of Schnorr Signatures
 
 The following describes how the mathematical concepts of elliptic curves and finite fields can be used to construct

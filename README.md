@@ -132,3 +132,9 @@ They can then verify that the x-coordinate of *R* matches the
 BATCH VERIFICATION
 
 CROSS INPUT AGGREGATION
+
+# Acknowledgements
+Many thanks go out to Pieter Wuille and Andrew Poelstra for documentation and presentations on the ideas implemented here.
+This repository could not have been completed without help from them and resources by the community more broadly.
+
+

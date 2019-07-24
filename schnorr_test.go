@@ -1,10 +1,8 @@
 package schnorr_test
 
 import (
-	// "projects/go_bitcoin/elliptic"
-
 	"encoding/hex"
-	"projects/go_bitcoin/schnorr"
+	"schnorr"
 	"testing"
 
 	"github.com/btcsuite/btcd/btcec"

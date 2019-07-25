@@ -2,10 +2,10 @@ package schnorr_test
 
 import (
 	"encoding/hex"
-	"schnorr"
 	"testing"
 
 	"github.com/btcsuite/btcd/btcec"
+	"github.com/calvinrzachman/schnorr"
 )
 
 /*

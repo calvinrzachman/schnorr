@@ -3,6 +3,15 @@
 # Schnorr Signatures
 Go implementation of Schnorr Signatures
 
+Many thanks go out to Pieter Wuille and Andrew Poelstra for documentation and presentations on the ideas implemented here.
+This repository could not have been completed without help from them and resources by the community more broadly. Most notably:
+
+- [BIP Schnorr](https://github.com/sipa/bips/blob/bip-schnorr/bip-schnorr.mediawiki)
+- [SF Bitcoin Devs - Taproot and Schnorr](https://www.youtube.com/watch?v=YSUVRj8iznU)
+- [SF Bitcoin Devs - Musig](https://www.youtube.com/watch?v=j9Wvz7zI_Ac)
+
+Code passes all test vectors provided in the Schnorr Bitcoin Improvement Proposal document.
+
 The following describes how the mathematical concepts of elliptic curves and finite fields can be used to construct
 a digital signature scheme.
 
@@ -135,8 +144,6 @@ BATCH VERIFICATION
 
 CROSS INPUT AGGREGATION
 
-# Acknowledgements
-Many thanks go out to Pieter Wuille and Andrew Poelstra for documentation and presentations on the ideas implemented here.
-This repository could not have been completed without help from them and resources by the community more broadly.
+PAY TO CONTRACT/TAPROOT
 
 

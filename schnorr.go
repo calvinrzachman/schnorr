@@ -18,7 +18,7 @@ import (
 
 var (
 	// Curve represents the secp256k1 elliptic curve
-	Curve = btcec.S256() //elliptic.P256()
+	Curve = btcec.S256()
 
 	// N represents the size of the finite cyclic group defined over the given elliptic curve
 	N = Curve.Params().N
@@ -82,7 +82,7 @@ func Sign(message [32]byte, privateKey *ecdsa.PrivateKey) ([64]byte, error) {
 	return signature, nil
 }
 
-// VerifySignature verifies that the signature (s, R)
+// VerifySignature verifies that the signature (R, s)
 // on the message is valid for the given public key
 func VerifySignature(publicKey *ecdsa.PublicKey, message [32]byte, signature [64]byte) (bool, error) {
 
@@ -144,7 +144,6 @@ func deterministicK(privateKey []byte, message [32]byte) (*big.Int, error) {
 	return k, nil
 }
 
-// CONSIDER REWORKING THIS
 // intToBytes returns the big endian byte
 // representation of a large integer
 func intToBytes(bigInt *big.Int) []byte {
@@ -158,7 +157,8 @@ func intToBytes(bigInt *big.Int) []byte {
 func SerializeCompressed(publicKey *ecdsa.PublicKey) [33]byte {
 	var compressedKey [33]byte
 	b := make([]byte, 1, 33)
-	// if y is even prefix with 0x2, if odd prefix with 0x3
+	// The parity (even/odd) is indicated by the first bit
+	// if y is even -> prefix with 0x2, if odd -> prefix with 0x3
 	b[0] = 0x2
 	b[0] += byte(publicKey.Y.Bit(0))
 	b = append(b, publicKey.X.Bytes()...)

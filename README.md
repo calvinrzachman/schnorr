@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/calvinrzachman/schnorr.svg?branch=master)](https://travis-ci.org/calvinrzachman/schnorr)
+
 # Schnorr Signatures
 Go implementation of Schnorr Signatures
 

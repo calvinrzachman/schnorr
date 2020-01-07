@@ -20,11 +20,11 @@ Consider the following: We would like to send Bitcoin from Party A to Party B in
 
 ## DIGITAL SIGNATURES
 
-A digital signature is a mathematical structure which verifies the authenticity of a digital document or message. Just like a regular signature, a digital signature provides *authentication* . Digital signatures have several additional properties including that, after producing a signature, the signer cannot deny having produced that signature *(Non-repudiation)* and they provide that the contents of a message have not been altered in any way *(Data Integrity)*.
+A digital signature is a mathematical structure which verifies the authenticity of a digital document or message. Just like a regular signature, a digital signature provides *authentication*. Digital signatures have several additional properties including that, after producing a signature, the signer cannot deny having produced that signature *(Non-repudiation)* and that the contents of the signed message have not been altered in any way *(Data Integrity)*.
 
 A digital signaure allows for a party to prove knowledge of a secret without divulging that secret. In the context of Bitcoin, this rather interesting property enables data to be encumbered or associated with a public key in such a way that only the party with knowledge of the associated private key can authorize the transfer of funds.
     
-In Bitcoin, coins (UTXO) are locked with a spending condition. The mechanism used to enforce the association of Bitcoin UTXO and its spending condition is a simple scripting language that is understood and executed on every Bitcoin network node. The spending condition can be empty (allowing anyone to spend) but most commonly they bind Bitcoin to the ownder of a public/private key pair. In almost all cases, the act of spending coins becomes a problem of proving knowledge of the associated private key. The most simple way to do this would be to simply announce the private key to the network. However, this is undesirable and prompts search for a better method. Digital signatures are this alternative.
+In Bitcoin, coins (UTXO) are locked with a spending condition. The mechanism used to enforce the association of Bitcoin UTXO and its spending condition is a simple scripting language that is understood and executed on every Bitcoin network node. The spending condition can be empty (allowing anyone to spend) but most commonly they bind Bitcoin to the owner of a public/private key pair. In almost all cases, the act of spending coins becomes a problem of proving knowledge of the associated private key. The most simple way to do this would be to simply announce the private key to the network. However, this is undesirable and prompts search for a better method. Digital signatures are this alternative.
 
 The following description assumes some basic familiarity with how mathematical operation of addition/multiplication
 is defined on an elliptic curve over a finite field.
@@ -32,11 +32,12 @@ is defined on an elliptic curve over a finite field.
 
 ## SCHNORR SIGNATURE
 
-Schnorr Signatures is a particular type of digital signature scheme with notable improvements over the more traditionally
-used and current signature scheme in Bitcoin - Elliptic Curve Digital Signatures. These improvements include, most notably:
+A Schnorr signature is a particular type of digital signature scheme which improves upon the more traditionally
+used and current signature scheme in Bitcoin - Elliptic Curve Digital Signatures. The schnorr signature itself is a relatively simple linear equation and serves as a prerequisite for several interesting improvements to Bitcoin, most notably:
 
-* Batch Verification
-* Signature Aggregation 
+* Compact Transparent Multisignatures
+* Batch Signature Verification
+* Cross Input Signature Aggregation 
 
 Like ECDSA, a Schnorr Signature is characterized by the tuple:
 
